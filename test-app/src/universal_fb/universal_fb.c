@@ -34,8 +34,7 @@ static bool byte_get_bit(uint8_t *byte, uint8_t bit) {
 }
 
 static void byte_set_bit(uint8_t *byte, uint8_t bit, bool value) {
-  uint8_t result = ((*byte) >> bit) | value;
-  *byte = result;
+  *byte = ((*byte) >> bit) | value;
 }
 
 /************************************ API *************************************/
@@ -48,10 +47,13 @@ GColor universal_fb_get_pixel_color(GBitmap *fb, GPoint point) {
 #if defined(PBL_COLOR)
     return (GColor){ .argb = info.data[point.x] };
 #elif defined(PBL_BW)
-    return GColorClear; // TODO 2.x pixel get
+    uint8_t byte = point.x / 8;
+    uint8_t bit = point.x % 8; // fb: bwbb bbbb -> byte: 0000 0010
+    return byte_get_bit(&byte, bit);
 #endif
   } else {
     // Out of bounds
+    APP_LOG(APP_LOG_LEVEL_ERROR, "Pixel %d,%d out of bounds on this display", point.x, point.y);
     return GColorClear;
   }
 }
@@ -64,10 +66,14 @@ void universal_fb_set_pixel_color(GBitmap *fb, GPoint point, GColor color) {
 #if defined(PBL_COLOR)
     memset(&info.data[point.x], color.argb, 1);
 #elif defined(PBL_BW)
-    // TODO 2.x pixel set
+    uint8_t byte = point.x / 8;
+    uint8_t bit = point.x % 8; // fb: bwbb bbbb -> byte: 0000 0010
+    uint8_t value = (color == GColorBlack);
+    byte_set_bit(&byte, bit, value);
 #endif
   } else {
     // Out of bounds
+    APP_LOG(APP_LOG_LEVEL_ERROR, "Pixel %d,%d out of bounds on this display", point.x, point.y);
     return;
   }
 }

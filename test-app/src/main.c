@@ -11,9 +11,17 @@ static void test(bool condition, char *name) {
 }
 
 static void test_drawing(GBitmap *fb, GColor c1, GColor c2) {
-  // Test SET
-  universal_fb_set_pixel_color(fb, GPoint(30, 30), c1);
-  test(gcolor_equal(universal_fb_get_pixel_color(fb, GPoint(30, 30)), c1), "universal_fb_set/get_pixel_color");
+  GPoint test_point = GPoint(30, 30);
+
+  // Test set and get
+  universal_fb_set_pixel_color(fb, test_point, c1);
+  test(gcolor_equal(universal_fb_get_pixel_color(fb, test_point), c1), 
+       "universal_fb_set/get_pixel_color");
+
+  // Test swap
+  universal_fb_swap_colors(fb, c1, c2);
+  test(gcolor_equal(universal_fb_get_pixel_color(fb, test_point), c2), 
+       "universal_fb_swap_colors");
 }
 
 static void update_proc(Layer *layer, GContext *ctx) {
