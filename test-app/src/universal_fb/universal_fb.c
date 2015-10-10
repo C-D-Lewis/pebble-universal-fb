@@ -34,7 +34,7 @@ static bool byte_get_bit(uint8_t *byte, uint8_t bit) {
 }
 
 static void byte_set_bit(uint8_t *byte, uint8_t bit, bool value) {
-  *byte = ((*byte) >> bit) | value;
+  *byte = (value << bit) | *byte;
 }
 
 /************************************ API *************************************/
@@ -70,6 +70,9 @@ void universal_fb_set_pixel_color(GBitmap *fb, GPoint point, GColor color) {
     uint8_t bit = point.x % 8; // fb: bwbb bbbb -> byte: 0000 0010
     uint8_t value = (color == GColorWhite) ? 1 : 0;   // '1 is white'
     byte_set_bit(&byte, bit, value);
+
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "Setting pixel %d,%d (byte %d bit %d) to %s",
+      point.x, point.y, byte, bit, value == 1 ? "GColorWhite" : "GColorBlack");
 #endif
   } else {
     // Out of bounds
