@@ -49,7 +49,7 @@ GColor universal_fb_get_pixel_color(GBitmap *fb, GPoint point) {
 #elif defined(PBL_BW)
     uint8_t byte = point.x / 8;
     uint8_t bit = point.x % 8; // fb: bwbb bbbb -> byte: 0000 0010
-    return byte_get_bit(&byte, bit);
+    return byte_get_bit(&byte, bit) ? GColorWhite : GColorBlack;
 #endif
   } else {
     // Out of bounds
@@ -68,7 +68,7 @@ void universal_fb_set_pixel_color(GBitmap *fb, GPoint point, GColor color) {
 #elif defined(PBL_BW)
     uint8_t byte = point.x / 8;
     uint8_t bit = point.x % 8; // fb: bwbb bbbb -> byte: 0000 0010
-    uint8_t value = (color == GColorBlack);
+    uint8_t value = (color == GColorWhite) ? 1 : 0;   // '1 is white'
     byte_set_bit(&byte, bit, value);
 #endif
   } else {
