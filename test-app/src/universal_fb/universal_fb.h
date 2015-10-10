@@ -23,4 +23,4 @@ void universal_fb_set_pixel_color(GBitmap *fb, GPoint point, GColor color);
  * Swap two colors between each other.
  * c2 will only replace c1. No other inversion will occur
  */
-void universal_fb_swap_colors(GBitmap *fb, GColor c1, GColor c2);
+void universal_fb_swap_colors(GBitmap *fb, GRect bounds, GColor c1, GColor c2);

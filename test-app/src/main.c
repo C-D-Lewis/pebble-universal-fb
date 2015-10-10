@@ -19,7 +19,7 @@ static void test_drawing(GBitmap *fb, GColor c1, GColor c2) {
        "universal_fb_set/get_pixel_color");
 
   // Test swap
-  universal_fb_swap_colors(fb, c1, c2);
+  universal_fb_swap_colors(fb, GRect(test_point.x, test_point.y, 1, 1), c1, c2);
   test(gcolor_equal(universal_fb_get_pixel_color(fb, test_point), c2), 
        "universal_fb_swap_colors");
 }

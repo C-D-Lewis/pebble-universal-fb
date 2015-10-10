@@ -76,18 +76,22 @@ void universal_fb_set_pixel_color(GBitmap *fb, GPoint point, GColor color) {
   }
 }
 
-void universal_fb_swap_colors(GBitmap *fb, GColor c1, GColor c2) {
-  GRect bounds = gbitmap_get_bounds(fb);
+static void r(int x, int y) {
+  printf("Swapped %d %d", x, y);
+}
 
-  for(int y = 0; y < bounds.size.h; y++) {
+void universal_fb_swap_colors(GBitmap *fb, GRect bounds, GColor c1, GColor c2) {
+  for(int y = bounds.origin.y; y < bounds.origin.y + bounds.size.h; y++) {
     GBitmapDataRowInfo info = gbitmap_get_data_row_info(fb, y);
-    for(int x = info.min_x; x < info.max_x; x++) {
+    for(int x = bounds.origin.x; x < bounds.origin.x + bounds.size.w; x++) {
       if(gcolor_equal(universal_fb_get_pixel_color(fb, GPoint(x, y)), c1)) {
         // Replace c1 with c2
         universal_fb_set_pixel_color(fb, GPoint(x, y), c2);
+        r(x,y);
       } else if(gcolor_equal(universal_fb_get_pixel_color(fb, GPoint(x, y)), c2)) {
         // Vice versa
         universal_fb_set_pixel_color(fb, GPoint(x, y), c1);
+        r(x, y);
       }
     }
   }
