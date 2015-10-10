@@ -52,7 +52,6 @@ GColor universal_fb_get_pixel_color(GBitmap *fb, GPoint point) {
 #endif
   } else {
     // Out of bounds
-    APP_LOG(APP_LOG_LEVEL_ERROR, "Pixel %d,%d out of bounds on this display", point.x, point.y);
     return GColorClear;
   }
 }
@@ -71,13 +70,8 @@ void universal_fb_set_pixel_color(GBitmap *fb, GPoint point, GColor color) {
 #endif
   } else {
     // Out of bounds
-    APP_LOG(APP_LOG_LEVEL_ERROR, "Pixel %d,%d out of bounds on this display", point.x, point.y);
     return;
   }
-}
-
-static void r(int x, int y) {
-  printf("Swapped %d %d", x, y);
 }
 
 void universal_fb_swap_colors(GBitmap *fb, GRect bounds, GColor c1, GColor c2) {
@@ -87,11 +81,9 @@ void universal_fb_swap_colors(GBitmap *fb, GRect bounds, GColor c1, GColor c2) {
       if(gcolor_equal(universal_fb_get_pixel_color(fb, GPoint(x, y)), c1)) {
         // Replace c1 with c2
         universal_fb_set_pixel_color(fb, GPoint(x, y), c2);
-        r(x,y);
       } else if(gcolor_equal(universal_fb_get_pixel_color(fb, GPoint(x, y)), c2)) {
         // Vice versa
         universal_fb_set_pixel_color(fb, GPoint(x, y), c1);
-        r(x, y);
       }
     }
   }
