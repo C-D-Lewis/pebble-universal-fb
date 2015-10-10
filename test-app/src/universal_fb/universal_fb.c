@@ -21,20 +21,19 @@ static GBitmapDataRowInfo gbitmap_get_data_row_info(GBitmap *bitmap, int y) {
   int rsb = gbitmap_get_bytes_per_row(bitmap);
   ptr = &ptr[y * rsb];
   return (GBitmapDataRowInfo) {
-    .min_x = 0, .max_x = 143, .data = ptr // Start of this row
+    .min_x = 0, .max_x = 144, .data = ptr // Start of this row
   };
 }
 #endif
 
 /********************************** Internal **********************************/
 
-// "0000 0010 get bit 1" --> 1
 static bool byte_get_bit(uint8_t *byte, uint8_t bit) {
   return ((*byte) >> bit) & 1;
 }
 
-static void byte_set_bit(uint8_t *byte, uint8_t bit, bool value) {
-  *byte = (value << bit) | *byte;
+static void byte_set_bit(uint8_t *byte, uint8_t bit, uint8_t value) {
+  *byte ^= (-value ^ *byte) & (1 << bit);
 }
 
 /************************************ API *************************************/
@@ -49,7 +48,7 @@ GColor universal_fb_get_pixel_color(GBitmap *fb, GPoint point) {
 #elif defined(PBL_BW)
     uint8_t byte = point.x / 8;
     uint8_t bit = point.x % 8; // fb: bwbb bbbb -> byte: 0000 0010
-    return byte_get_bit(&byte, bit) ? GColorWhite : GColorBlack;
+    return byte_get_bit(&info.data[byte], bit) ? GColorWhite : GColorBlack;
 #endif
   } else {
     // Out of bounds
@@ -68,11 +67,7 @@ void universal_fb_set_pixel_color(GBitmap *fb, GPoint point, GColor color) {
 #elif defined(PBL_BW)
     uint8_t byte = point.x / 8;
     uint8_t bit = point.x % 8; // fb: bwbb bbbb -> byte: 0000 0010
-    uint8_t value = (color == GColorWhite) ? 1 : 0;   // '1 is white'
-    byte_set_bit(&byte, bit, value);
-
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "Setting pixel %d,%d (byte %d bit %d) to %s",
-      point.x, point.y, byte, bit, value == 1 ? "GColorWhite" : "GColorBlack");
+    byte_set_bit(&info.data[byte], bit, color);
 #endif
   } else {
     // Out of bounds
