@@ -1,0 +1,16 @@
+{
+    "name": "universal_fb",
+    "version": "0.1.0",
+    "description": "Universal framebuffer library for Pebble SDK",
+    "keywords": ["pebble", "framebuffer"],
+    "license": "MIT",
+    "author": "Chris Lewis <bonsitm@gmail.com>",
+    "pebble": {
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk"
+        ]
+    }
+}
