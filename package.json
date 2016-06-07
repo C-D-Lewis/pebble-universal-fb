@@ -4,6 +4,7 @@
   "version": "1.1.0",
   "description": "Universal framebuffer library for Pebble SDK",
   "license": "MIT",
+  "repository": "C-D-Lewis/universal-fb",
   "files": ["dist.zip"],
   "keywords": ["pebble-package", "framebuffer"],
   "pebble": {
