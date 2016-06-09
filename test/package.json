@@ -1,0 +1,30 @@
+{
+  "name": "universal-fb",
+  "author": "Chris Lewis <bonsitm@gmail.com>",
+  "version": "1.0.0",
+  "keywords": ["pebble-app"],
+  "private": true,
+  "dependencies": {
+    "universal-fb": "1.1.0"
+  },
+  "pebble": {
+    "displayName": "universal-fb",
+    "uuid": "ef141fad-3a6e-4b51-b859-ad25a0b6cc92",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "messageKeys": [
+      "dummy"
+    ],
+    "resources": {
+      "media": []
+    }
+  }
+}
