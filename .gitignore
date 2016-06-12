@@ -8,3 +8,6 @@ dist.zip
 
 # Ignore installed node modules
 node_modules/
+
+*.DS_Store
+test/
