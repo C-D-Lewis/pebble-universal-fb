@@ -11,4 +11,4 @@ in `package.json` in your Pebble project.
 
 ## Documentation
 
-See `universal_fb/universal_fb.h` for minimal docs.
+See `include/universal_fb.h` for minimal docs.
