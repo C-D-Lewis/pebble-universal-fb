@@ -1,6 +1,6 @@
 #include <pebble.h>
 
-#include "universal_fb/universal_fb.h"
+#include <universal_fb/universal_fb.h>
 
 static Window *s_window;
 static Layer *s_layer;
