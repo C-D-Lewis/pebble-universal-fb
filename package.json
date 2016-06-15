@@ -1,7 +1,7 @@
 {
   "name": "universal-fb",
   "author": "Chris Lewis <bonsitm@gmail.com>",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Universal framebuffer library for Pebble SDK",
   "license": "MIT",
   "repository": "C-D-Lewis/universal-fb",
