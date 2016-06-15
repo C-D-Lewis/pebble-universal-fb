@@ -6,7 +6,7 @@ swapping pixel colors on all Pebble platforms. Available on
 
 ## Installation
 
-Use `pebble package install universal-fb` to unstall, or specify as a dependency
+Use `pebble package install universal-fb` to install, or specify as a dependency
 in `package.json` in your Pebble project.
 
 ## Documentation
