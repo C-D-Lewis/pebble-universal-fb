@@ -1,12 +1,11 @@
 {
-  "name": "universal-fb",
+  "name": "universal-fb-test",
   "author": "Chris Lewis <bonsitm@gmail.com>",
   "version": "1.0.0",
-  "keywords": ["pebble-app"],
+  "keywords": [
+    "pebble-app"
+  ],
   "private": true,
-  "dependencies": {
-    "universal-fb": "1.2.0"
-  },
   "pebble": {
     "displayName": "universal-fb",
     "uuid": "ef141fad-3a6e-4b51-b859-ad25a0b6cc92",
@@ -15,7 +14,9 @@
     "targetPlatforms": [
       "aplite",
       "basalt",
-      "chalk"
+      "chalk",
+      "diorite",
+      "emery"
     ],
     "watchapp": {
       "watchface": false
@@ -26,5 +27,8 @@
     "resources": {
       "media": []
     }
+  },
+  "dependencies": {
+    "pebble-universal-fb": "file:///Users/chrislewis/Dropbox/Pebble-Dev/4.0/lib/pebble-universal-fb"
   }
 }
