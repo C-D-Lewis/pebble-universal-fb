@@ -2,7 +2,7 @@
 
 Universal framebuffer library for Pebble SDK. Allows getting, setting, and
 swapping pixel colors on all Pebble platforms. Available on
-[NPM](https://www.npmjs.com/package/universal-fb).
+[NPM](https://www.npmjs.com/package/pebble-universal-fb).
 
 ## Installation
 
