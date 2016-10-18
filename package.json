@@ -1,7 +1,7 @@
 {
-  "name": "universal-fb",
+  "name": "pebble-universal-fb",
   "author": "Chris Lewis <bonsitm@gmail.com>",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Universal framebuffer library for Pebble SDK",
   "license": "MIT",
   "repository": "C-D-Lewis/universal-fb",
@@ -14,7 +14,8 @@
       "aplite",
       "basalt",
       "chalk",
-      "diorite"
+      "diorite",
+      "emery"
     ]
   }
 }

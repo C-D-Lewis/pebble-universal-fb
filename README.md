@@ -1,4 +1,4 @@
-# universal-fb
+# pebble-universal-fb
 
 Universal framebuffer library for Pebble SDK. Allows getting, setting, and
 swapping pixel colors on all Pebble platforms. Available on
@@ -11,4 +11,4 @@ in `package.json` in your Pebble project.
 
 ## Documentation
 
-See `include/universal_fb.h` for minimal docs.
+See `include/pebble-universal-fb.h` for minimal docs.

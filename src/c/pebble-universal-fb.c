@@ -4,7 +4,7 @@
  * License: MIT
  */
  
-#include "universal_fb.h"
+#include "pebble-universal-fb.h"
 
 #if defined(PBL_BW)
 static bool byte_get_bit(uint8_t *byte, uint8_t bit) {
